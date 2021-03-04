@@ -31,6 +31,8 @@ pip install -r requirements.txt
 - Type `deactivate` in the terminal.
 
 ## Features:
-- Opens images in sxiv
+- Opens images in sxiv if you press I in the console window (if there is an image)
 - Shows description if there is one
+- Go back to select a new post without restarting the program by pressing P
+- Go back to select a new subreddit without restarting the program by pressing S
 - Open comments by pressing C (TODO)
