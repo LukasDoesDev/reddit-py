@@ -33,4 +33,4 @@ pip install -r requirements.txt
 ## Features:
 - Opens images in sxiv
 - Shows description if there is one
-- Open comments by pressing C
+- Open comments by pressing C (TODO)
