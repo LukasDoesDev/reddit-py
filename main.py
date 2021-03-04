@@ -13,10 +13,7 @@ subredditQuestion = {
 
 posts = getSubredditPosts(subredditQuestion)
 
-default = ""
-
 while True:
-    print('default : ' + default)
     posts_strings = list(map(create_post_string, posts))
     post_select = {
         'type': 'list',
@@ -25,15 +22,9 @@ while True:
         'choices': posts_strings,
     }
 
-    if default:
-        print('def : ' + default)
-        post_select['default'] = default
-
     post_answer = prompt([post_select])
     if post_answer == {}:
         sys.exit(1)
-    default = post_answer['list']
-    print('default2 : ' + default)
 
 
     post_id = post_answer['list'].split(' (id: t3_')[-1].split(')')[0]
@@ -67,8 +58,6 @@ while True:
             break
         elif key == "s":
             posts = getSubredditPosts(subredditQuestion)
-
-            default = ""
             break
         elif key == "c":
             print ('NOT READY YET')
