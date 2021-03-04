@@ -1,5 +1,6 @@
-import sys, os, subprocess
+import sys, os, subprocess, json
 import requests
+from PyInquirer import prompt
 
 def wait_key():
     ''' Wait for a key press on the console and return it. '''
@@ -81,3 +82,35 @@ def post_is_image(post):
         return post['post_hint'] == 'image'
     else:
         return False
+
+def getSubredditPosts(subredditQuestion):
+    answers = prompt([subredditQuestion])
+    if answers == {}:
+        sys.exit(1)
+
+    subreddit = answers['subreddit']
+    url = f'https://www.reddit.com/r/{subreddit}.json'
+
+    res = requests.get(url, headers={'User-agent': 'your bot 0.1'})
+
+    if res.status_code != 200:
+        print(f'There was an error getting {url} {res.status_code}')
+        if res.status_code == 404:
+            print('404 Not Found')
+        elif res.status_code == 429:
+            print('429 Too Many Requests')
+        sys.exit(1)
+
+
+    data = res.json()
+    posts = data['data']['children']
+    posts = list(map(lambda post: post['data'], posts))
+
+    if '--images-only' in sys.argv:
+        posts = list(filter(post_is_image, posts))
+
+
+    # Only show 10 posts
+    del posts[10:]
+
+    return posts
