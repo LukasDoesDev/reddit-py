@@ -3,11 +3,13 @@ import requests
 import sys, json
 from functions import wait_key, openImage, getComments, get_post_with_id, create_post_string, post_is_image
 
+subreddits = ['linuxmemes', 'memes', 'funny', 'teenagers', 'engrish']
+
 subredditQuestion = {
     'type': 'list',
     'name': 'subreddit',
     'message': 'Subreddit',
-    'choices': ['linuxmemes', 'memes', 'funny', 'teenagers', 'engrish'],
+    'choices': subreddits,
 }
 
 answers = prompt([subredditQuestion])
