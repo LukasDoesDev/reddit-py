@@ -18,7 +18,7 @@ while True:
     post_select = {
         'type': 'list',
         'name': 'list',
-        'message': 'Do you want images only',
+        'message': 'Which post do you want to open?',
         'choices': posts_strings,
     }
 

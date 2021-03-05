@@ -107,6 +107,7 @@ def getSubredditPosts(subredditQuestion):
     posts = list(map(lambda post: post['data'], posts))
 
     if '--images-only' in sys.argv:
+        print ('--- --- IMAGES ONLY --- ---')
         posts = list(filter(post_is_image, posts))
 
 
